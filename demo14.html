@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>鼠标悬浮显示信息</title>
+    <script type="text/javascript" src="scripts/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="scripts/jquery.jqzoom.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/basic.css" />
+    <link href="lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+        //大图片800*800，小图350*350
+        $(function() {
+            $('#placeholder #smaller').append('<div id="area"></div>');
+            //绑定mouseover事件
+            var x, y, imageL, imageT;
+            $('#smaller').mousemove(function(e) {
+                imageL = $(this).offset().left;
+                imageT = $(this).offset().top;
+                if (e.pageX - imageL > 50 && e.pageX - imageL < 300) {
+                    x = e.pageX - 50;
+                } else {
+                    if (e.pageX - imageL <= 50) {
+                        x = imageL;
+                    } else {
+                        x = imageL + 250;
+                    }
+                }
+                if (e.pageY - imageT > 50 && e.pageY - imageT < 300) {
+                    y = e.pageY - 50;
+                } else {
+                    if (e.pageY - imageT <= 50) {
+                        y = imageT;
+                    } else {
+                        y = imageT + 250;
+                    }
+                }
+                $('.area').offset({left: x, top: y});
+                //position相对偏移
+                positionL = -($('.area').position().left)*(800/350)
+                positionT = -($('.area').position().top)*(800/350) 
+                $('#bigger img').css({'left': positionL, 'top': positionT});
+            })
+            //悬浮创建放大区域
+            $('#smaller').hover(function() {
+                $('#smaller #area').toggleClass('area');
+                $('#bigger').toggle();
+            })
+        })
+    </script>
+    <style type="text/css">
+        #container {
+            width: 700px;
+        }
+        #placeholder {
+            position: relative;
+        }
+        #placeholder div {
+            display: inline-block;
+        }
+        #smaller {
+            height: 350px;
+            width: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+        #bigger {
+            height: 300px;
+            width: 300px;
+            overflow: hidden;
+            float: right;
+            position: relative;
+            padding-left: 10px;
+        }
+        #bigger img {
+            display: block;
+            position: absolute;
+        }
+        .area {
+            height: 100px;
+            width: 100px;
+            background-color: white;
+            opacity:0.5;
+            float: left;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="placeholder">
+            <div id="smaller">
+                <img src="images/350.jpg" />    
+            </div>
+            <div id="bigger" style="display: none;">
+                <img src="images/800.jpg" />
+            </div>           
+        </div>
+    </div>
+</body>
+</html>

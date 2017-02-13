@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>点击文本显示具体信息</title>
+    <script type="text/javascript" src="scripts/jquery-3.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/basic.css" />
+    <script type="text/javascript">
+        $(function() {
+            $('section').hide();
+            $('nav a').hover(function(){
+                $(this).css('fontWeight', 'bold');
+            }, function() {
+                $(this).css('fontWeight', 'normal');
+            });
+            $('nav li').click(function() {
+                if (!$('#imagegallery img')[0]) {
+                    var image = '<img alt="displayImage" />'
+                    $('#imagegallery').append(image);
+                }
+                var id = $(this).children('a').attr('href').split('#')[1];
+                if ($('#'+id).is(':hidden')) {
+                    $('section[id!='+id+']').hide(600);
+                    $('#'+id).show(600);
+                }
+                $('#imagegallery').css({
+                    'height': '200px',
+                    'overflow': 'hidden',
+                    'margin-left': '30px'
+                }).children('img').attr('src', 'images/'+id+'.jpg');
+                return false;
+            })
+
+        })
+    </script>
+    <style type="text/css">
+        p {
+            padding-left: 20px;
+            font-size: 20px;
+        }
+        nav li {
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <article id="container">
+        <h1>杜牧诗篇</h1>
+        <nav>
+            <ul>
+                <li><a href="#poem1">山行</a></li>
+                <li><a href="#poem2">江南春</a></li>
+            </ul>
+        </nav>
+        <section id="poem1">
+            <h2>山行</h2>
+            <p>远上寒山石径斜，白云生处有人家。</p>
+            <p>停车坐爱枫林晚，霜叶红于二月花。</p>
+        </section>
+        <section id="poem2">
+            <h2>江南春</h2>
+            <p>千里莺啼绿映红，水村山郭酒旗风。</p>
+            <p>南朝四百八十寺，多少楼台烟雨中。</p>
+        </section>
+        <div id="imagegallery"></div>
+    </article>
+</body>
+</html>

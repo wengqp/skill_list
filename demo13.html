@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>图片轮转</title>
+    <script type="text/javascript" src="scripts/jquery-3.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/basic.css" />
+    <link href="lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+        $(function() {
+            $('#images img:gt(0)').hide();
+            var index = 0;
+            var time;
+            $('#btn div').click(function() {
+                clearInterval(time);  //清除setInterval
+                index = $('#btn div').index(this);  //当前索引值
+                $(this).css('backgroundColor', 'red').siblings().css('backgroundColor', 'white');
+                $('#images img:eq('+index+')').show().siblings().hide();
+                //设定每隔2秒自动切换图片
+                time = setInterval(function() {
+                    if (index < 5) {
+                        index++;                    
+                    } else {
+                        index = 0;
+                    }
+                    $('#btn div:eq('+index+')').trigger('click');
+                }, 2000)
+            });
+            //初始化
+            $('#btn div:eq(0)').trigger('click');
+        })
+    </script>
+    <style type="text/css">
+        #manga {
+            position: relative;
+            height: 300px;
+            width: 500px;
+            overflow: hidden;
+        }
+        #btn {
+            position: absolute;
+            right: 10px;
+            bottom: 5px; 
+            z-index: 99;
+        }
+        #btn div {
+            display: inline-block;
+            height: 10px;
+            width: 10px;
+            margin: 0 3px;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: white;
+        }
+        .red {
+            background-color: red;
+        }
+        h3 {
+            padding-bottom: 10px;
+        }       
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="manga">
+            <h3>点击小圆点或者自动轮转</h2>
+            <div id="images">
+                <img src="images/50030001.jpg" />
+                <img src="images/50030002.jpg" />
+                <img src="images/50030003.jpg" />
+                <img src="images/50030004.jpg" />
+                <img src="images/50030005.jpg" />            
+            </div>
+            <div id="btn">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

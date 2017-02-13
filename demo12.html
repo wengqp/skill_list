@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>鼠标悬浮显示信息</title>
+    <script type="text/javascript" src="scripts/jquery-3.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/basic.css" />
+    <link href="lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+        $(function() {
+            var list = ['北京','上海', '天津', '重庆', '河北', 
+                        '山西', '河南', '辽宁', '吉林', '黑龙江',
+                        '内蒙古', '江苏', '山东', '安徽', '浙江',
+                        '福建', '湖北', '湖南', '广东', '广西',
+                        '江西', '四川', '海南', '贵州', '云南',
+                        '西藏', '陕西', '甘肃', '青海', '宁夏',
+                        '新疆', '港澳', '台湾', '钓鱼岛', '海外'];
+            for (var i=0; i<list.length; i++) {
+                var html = '<div class="item"><a href="">' + list[i] + '</a></div>';
+                $('.dl').append(html);
+            }
+            $('.dd').hover(function() {
+                $('.dl').show();
+            }, function() {
+                $('.dl').hide();
+            }) 
+        })
+    </script>
+    <style type="text/css">
+        .nav {
+            position: relative;
+            height: 32px;
+            background-color: #e3e4e5;
+        }
+        .dt {
+            height: 30px;
+            line-height: 28px;
+            padding: 0 7px;
+            position: relative;
+            z-index: 1;
+            float: left;
+            overflow: hidden;
+        }
+        .dd {
+            position: relative;
+            z-index: 21;
+        }
+        .dt {
+            border: 1px solid #e3e4e5;
+        }  
+        .dl {
+            position: absolute;
+            top: 30px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 1px 2px 1px rgba(0, 0, 0, .1);
+            line-height: 24px;
+            display: none;
+            width: 322px;
+            padding: 10px;
+        }
+        .item {
+            float: left;
+            width: 60px;
+        }
+        .item a {
+            padding: 0 8px;
+        }
+        .dd:hover .dt {
+            background-color: #fff; 
+            border-color: #ccc;
+            border-bottom: none;
+            height: 31px;
+        }
+        .dd:hover .dl {
+            background-color: #fff; 
+            display: block;
+        }
+        .red {
+            color: red;
+        }
+   
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="nav">
+            <div class="dd">
+                <div class="dt">
+                    <i class="Hui-iconfont red">&#xe671;</i>
+                    <span>北京</span>
+                </div>
+                <div class="dl"></div>       
+            </div>            
+        </div>
+    </div>
+</body>
+</html>

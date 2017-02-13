@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>模拟 Loading...</title>
+    <script type="text/javascript" src="scripts/jquery-3.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/basic.css" />
+    <script type="text/javascript">
+        $(function() {
+            var degInt = 0;
+            //创建12个立柱，并递增倾斜30度
+            for (var i=0; i<12; i++) {
+                $('#square').append('<div><div></div></div>');  
+                prepare(degInt, '#square>div:last');
+                degInt += 30;  //相隔30度     
+            }
+            var hand = 0;
+            var arr = [];
+            time = setInterval(function() {
+                if (hand == 12) hand = 0;
+                arr = [hand, hand+1, hand+2, hand+3, hand+4];
+                //循环添加相应的类，并删除其他元素同样的类
+                arr.forEach(function(value, index, array) {
+                    if (value > 11) value -= 12
+                    $('#square>div:eq(' + value + ')').children().addClass('circle'+index);
+                    $('#square>div:eq(' + value + ')').siblings().children().removeClass('circle'+index);
+                })
+                hand++;
+            }, 50)
+            //设置旋转度数
+            //参数一是度数，参数二是目标元素
+            function prepare(degInt, targetElement) {
+                if (degInt == 360) degInt = 0;
+                var degValue = 'rotate(' + degInt +'deg)';
+                var degArray = {
+                    'transform': degValue,
+                    '-ms-transform': degValue,   
+                    '-moz-transform': degValue,   
+                    '-webkit-transform': degValue,
+                    '-o-transform': degValue,               
+                }
+                $(targetElement).css(degArray).show();                          
+            }
+            
+        })
+    </script>
+    <style type="text/css">
+        #square {
+            margin: 20px auto;
+            height: 70px;
+            width: 70px;
+            position: relative;
+        }
+        #square>div {
+            height: 70px;
+            width: 10px;
+            position: absolute;
+            margin-left: 30px;
+        }
+        #square>div>div {
+            border-radius: 50%;
+            background-color: blue;
+            margin: 0 auto;
+        }
+        .circle0 {
+            height: 2px;
+            width: 2px; 
+        }
+        .circle1 {
+            height: 4px;
+            width: 4px; 
+        }
+        .circle2 {
+            height: 6px;
+            width: 6px; 
+        }
+        .circle3 {
+            height: 8px;
+            width: 8px; 
+        }
+        .circle4 {
+            height: 8px;
+            width: 8px; 
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="square">
+        </div>
+    </div>
+</body>
+</html>

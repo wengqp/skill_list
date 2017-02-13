@@ -1,0 +1,29 @@
+body {
+    color: #666;
+    background-color: #789;
+}
+
+#list {
+    border-color: #e6e6e6;
+}
+
+#list a {
+    color: #fff;
+}
+
+#list a:hover {
+    color: #667;
+    background-color: #fb5;
+}
+
+/*demo*/
+#container {
+    background-color: #fff;
+    border-color: #e6e6e6;
+}
+
+#container h1, #container h2, #container p, #container a {
+    color: #555;
+}
+
+

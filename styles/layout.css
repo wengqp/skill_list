@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#list {
+    width: 500px;
+}
+
+#list ul {
+    padding: 20px 40px;
+}
+
+#list h1, #list dd {
+    overflow: hidden;
+}
+
+#list a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+}
+
+.hover {
+    background-color: #fb5;
+}
+
+/*demo*/
+#container {
+    width: 600px;
+    padding: 30px;
+}
+

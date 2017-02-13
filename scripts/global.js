@@ -6,6 +6,7 @@ $(function() {
     addDdesc('图片放大镜', $('#list dl:eq(0)'), 'demo14.html');
     /*表单和表格*/  
     addDdesc('表格变色', $('#list dl:eq(1)'), 'demo21.html')
+    addDdesc('JD注册界面', $('#list dl:eq(1)'), 'demo22.html')
     /*其他玩法*/
     addDdesc('模拟 Loading...', $('#list dl:eq(2)'), 'demo31.html')
     /*加载函数*/

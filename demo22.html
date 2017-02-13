@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>注册验证</title>
+    <script type="text/javascript" src="scripts/jquery-3.1.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/basic.css" />
+    <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css">
+    <script type="text/javascript">
+        $(function() { 
+            var arr = ['用   户   名', '设 置 密 码', '确 认 密 码', '中国 0086', '验   证   码', '手机验证码'];
+            var txt = ['支持中文、字母、数字、"_"、"-"的组合，4-20个字符',
+                        '建议使用字母、数字和符号两种及以上的组合，6-20个字符',
+                        '请再次输入密码',
+                        '完成验证后，你可以用该手机登陆和找回密码',
+                        '看不清？点击图片更换验证码']
+            $('input:lt(6)').each(function(index) {
+                var pos = $(this).position();
+                var id = $(this).attr('id');
+                //为input绑定label
+                $('<label />').text(arr[index]).attr('for', id).insertBefore(this)
+                .css({'left': pos.left, 'top': pos.top});
+                //为input绑定focus和blur事件
+                if (index < 5) {
+                    $(this).focus(function() {
+                        $(this).next().html('<i class="Hui-iconfont Hui-iconfont-tishi"></i>'+ ' '+ txt[index]);
+                    }).blur(function() {
+                        $(this).next().empty();
+                    })                   
+                }
+            })
+            //加入验证码图片
+            pos = $('#v-code').position();
+            $('<a class="image" href=""><img class="vimg" src="images/vcode01.jpg" /></a>').insertAfter('#v-code+p').css({'left': pos.left+296, 'top': pos.top+5})
+            .click(function() {
+                //模拟换验证码
+                var image = $(this).children('img').attr('src');
+                if (image == 'images/vcode01.jpg') {
+                    $(this).children('img').attr('src', 'images/vcode02.jpg')    
+                } else {
+                    $(this).children('img').attr('src', 'images/vcode01.jpg')
+                }
+                return false;               
+            })
+            //获取验证码, 模拟倒计时30秒
+            pos = $('#m-code').position();
+            $('<button class="m-btn">获取验证码</button>').insertAfter('#m-code').css({'left': pos.left+296, 'top': pos.top+5})
+            .click(function() {
+                var count = 30;
+                var fCount = setInterval(function() {
+                    if (count > 0) {
+                        count--;
+                        $('.m-btn').text(count +'秒');
+                    } else {
+                        $('.m-btn').text('获取验证码');
+                        clearInterval(fCount);
+                    }                   
+                }, 1000)
+                return false;
+            });
+        })
+    </script>
+    <style type="text/css">
+        * {
+          -webkit-box-sizing: border-box;
+             -moz-box-sizing: border-box;
+                  box-sizing: border-box;
+        }
+        form {
+            margin: 0 auto;
+            width: 400px;
+            position: relative; 
+        }
+        input {
+            padding-left: 100px;
+            height: 50px;
+            width: 100%;
+            position: relative;
+            font: inherit;
+        }
+        form > div {
+            padding: 30px 0;
+            display: inline-block;
+            position: relative;
+        }
+        input[type=checkbox] {
+            height: 15px;
+            width: 15px;
+            position: absolute;
+            top: 32px;
+        }
+        input[type=checkbox]+span {
+            font-size: 12px;
+            margin-left: 20px;
+        }
+        #submit {
+            padding-left: 0;
+        }
+        form > p {
+            padding: 5px;
+            height: 28px;
+            opacity: .7;
+        } 
+        label {
+            height: 50px;
+            width: 100px;
+            position: absolute;
+            z-index: 11;
+            padding: 15px 20px;
+            white-space: pre;
+        }
+        #submit {
+            background-color: #e22;
+            color: #fff;
+            border: 0;
+        }
+        #container a {
+            color: #38f;
+        }
+        .image, .m-btn {
+            position: absolute;
+            z-index: 11;
+            width: 100px;
+            height: 40px;
+            overflow: hidden;
+        }
+        .image img {
+            width: 100px;
+            height: 40px;           
+        }
+        .m-btn {
+            font-size: 14px;
+            color: #333;
+            background-color: #f2f2f2;
+            border: 0;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        button {
+            outline:none;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <form id="register" action="" method="POST">
+            <input type="text" id="account" placeholder="您的账号名和姓名" />
+            <p></p>
+            <input type="password" id="psw" placeholder="建议至少使用两种字符组合" />
+            <p></p>
+            <input type="password" id="psw2" placeholder="请再次输入密码" />
+            <p></p>
+            <input type="text" id="mobile" placeholder="建议使用常用手机" />
+            <p></p>
+            <input type="text" id="v-code" placeholder="请输入验证码" />
+            <p></p>
+            <input type="text" id="m-code" placeholder="请输入手机验证码" />
+            <div>
+                <input type="checkbox" checked="checked" /><span>阅读并同意<a href="">《京东用户注册协议》</a> <a href="">《隐私政策》</a></span>                   
+            </div>
+            <input type="submit" id="submit" value="立即注册" />
+        </form>
+    </div>
+</body>
+</html>

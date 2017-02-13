@@ -13,12 +13,12 @@
             }, function() {
                 $(this).css('fontWeight', 'normal');
             });
-            $('nav li').click(function() {
+            $('nav li a').click(function() {
                 if (!$('#imagegallery img')[0]) {
                     var image = '<img alt="displayImage" />'
                     $('#imagegallery').append(image);
                 }
-                var id = $(this).children('a').attr('href').split('#')[1];
+                var id = $(this).attr('href').split('#')[1];
                 if ($('#'+id).is(':hidden')) {
                     $('section[id!='+id+']').hide(600);
                     $('#'+id).show(600);

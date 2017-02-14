@@ -1,0 +1,13 @@
+label.error {
+    display: block;
+    padding: 5px;
+    height: 28px;
+    width: 100%;
+    background-color: #fff;
+    color: #e22;
+}
+
+label i.Hui-iconfont {
+    font-weight: bold; 
+    font-size: 12px;
+}

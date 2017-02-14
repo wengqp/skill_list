@@ -9,6 +9,8 @@ $(function() {
     addDdesc('JD注册界面', $('#list dl:eq(1)'), 'demo22.html')
     /*其他玩法*/
     addDdesc('模拟 Loading...', $('#list dl:eq(2)'), 'demo31.html')
+    /*jQuery插件*/
+    addDdesc('表单验证 validation', $('#list dl:eq(3)'), 'demo41.html')
     /*加载函数*/
     mouse();
     toggleDlist();
